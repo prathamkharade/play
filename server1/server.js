@@ -9,7 +9,12 @@ const puppeteer = require('puppeteer');
 
 (async () => {
   // Launch Puppeteer
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+      executablePath: '/usr/bin/google-chrome',
+      headless: 'new',
+      ignoreDefaultArgs: ['--disable-extensions'],
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
 
   // Create a new page
   const page = await browser.newPage();
